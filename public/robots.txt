@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://halfwayup.co.uk/sitemap.xml

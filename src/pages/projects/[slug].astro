@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  return [
+    {
+      params: { slug: 'notification' },
+      props: {
+        project: {
+          title: "Notification",
+          year: 2025,
+          status: "In production",
+          type: "Short film",
+          runtime: "15 mins",
+          director: "TBC",
+          writer: "TBC",
+          producer: "Evelyn Sharples",
+          logline: "A tense psychological drama exploring the anxiety and anticipation of waiting for life-changing news.",
+          synopsis: "In an age of constant connectivity, Sarah finds herself paralysed by a single notification that could change everything. As she waits for the message that will determine her future, the film explores the psychological weight of digital anticipation and the stories we tell ourselves in moments of uncertainty.",
+          image: "/images/projects/notification-hero.jpg",
+          stills: [
+            "/images/projects/notification-still-1.jpg",
+            "/images/projects/notification-still-2.jpg"
+          ],
+          festivals: [],
+          awards: [],
+          trailer: "",
+          watch: ""
+        }
+      }
+    },
+    {
+      params: { slug: 'new-shoes' },
+      props: {
+        project: {
+          title: "New Shoes",
+          year: 2024,
+          status: "Completed",
+          type: "Short film",
+          runtime: "12 mins",
+          director: "TBC",
+          writer: "TBC",
+          producer: "Evelyn Sharples",
+          logline: "A heartwarming story about finding confidence and identity through an unexpected purchase.",
+          synopsis: "When Maya buys a pair of shoes that seem completely out of character, she discovers they hold the power to help her step into the person she's always wanted to be. A gentle exploration of self-discovery and the small moments that lead to transformation.",
+          image: "/images/projects/new-shoes-hero.jpg",
+          stills: [
+            "/images/projects/new-shoes-still-1.jpg",
+            "/images/projects/new-shoes-still-2.jpg"
+          ],
+          festivals: [
+            {
+              name: "British Short Film Festival",
+              year: 2024,
+              award: "Official Selection"
+            }
+          ],
+          awards: [],
+          trailer: "",
+          watch: ""
+        }
+      }
+    },
+    {
+      params: { slug: 'untitled-feature' },
+      props: {
+        project: {
+          title: "Untitled Feature Project",
+          year: 2025,
+          status: "In development",
+          type: "Feature film",
+          runtime: "90 mins",
+          director: "TBC",
+          writer: "TBC",
+          producer: "Evelyn Sharples",
+          logline: "A UK-India co-production exploring contemporary connections across cultures and continents.",
+          synopsis: "An ambitious feature film in development that will leverage the UK-India bilateral treaty to tell a story of cultural connection, identity, and belonging. Details to be announced.",
+          image: "/images/projects/feature-development.jpg",
+          stills: [],
+          festivals: [],
+          awards: [],
+          trailer: "",
+          watch: ""
+        }
+      }
+    }
+  ];
+}
+
+const { project } = Astro.props;
+
+const statusClass =
+  project.status === 'Completed' ? 'status-completed' :
+  project.status === 'In production' ? 'status-production' :
+  'status-development';
+---
+
+<BaseLayout
+  title={project.title}
+  description={project.logline}
+  ogImage={project.image}
+>
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative h-[60vh] overflow-hidden">
+      {project.trailer ? (
+        <div class="w-full h-full">
+          <!-- Embed trailer here when available -->
+        </div>
+      ) : (
+        <div class="w-full h-full bg-gray-900">
+          <img
+            src={project.image}
+            alt={project.title}
+            class="w-full h-full object-cover opacity-80"
+          />
+        </div>
+      )}
+    </section>
+
+    <!-- Project Info -->
+    <section class="section-padding bg-cream">
+      <div class="container-custom max-w-4xl">
+        <!-- Title & Metadata -->
+        <div class="mb-8">
+          <div class="flex items-center gap-3 text-sm font-mono text-muted mb-4">
+            <span>{project.year}</span>
+            <span>•</span>
+            <span>{project.runtime}</span>
+            <span>•</span>
+            <span class={`status-badge ${statusClass}`}>
+              {project.status}
+            </span>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4">{project.title}</h1>
+          <p class="text-xl text-muted italic">{project.logline}</p>
+        </div>
+
+        <!-- Synopsis -->
+        <div class="mb-8">
+          <h2 class="text-2xl font-serif font-semibold mb-4">Synopsis</h2>
+          <p class="text-lg leading-relaxed">{project.synopsis}</p>
+        </div>
+
+        <!-- Credits -->
+        <div class="mb-8">
+          <h2 class="text-2xl font-serif font-semibold mb-4">Key credits</h2>
+          <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <dt class="text-sm font-semibold text-muted uppercase tracking-wide">Director</dt>
+              <dd class="text-lg">{project.director}</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-muted uppercase tracking-wide">Writer</dt>
+              <dd class="text-lg">{project.writer}</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-muted uppercase tracking-wide">Producer</dt>
+              <dd class="text-lg">{project.producer}</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-muted uppercase tracking-wide">Type</dt>
+              <dd class="text-lg">{project.type}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Festivals & Awards -->
+        {project.festivals.length > 0 && (
+          <div class="mb-8">
+            <h2 class="text-2xl font-serif font-semibold mb-4">Festival selections</h2>
+            <ul class="space-y-2">
+              {project.festivals.map((festival: any) => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-secondary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <div>
+                    <p class="font-medium">{festival.name}</p>
+                    <p class="text-sm text-muted">{festival.year} • {festival.award}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Stills Gallery -->
+        {project.stills.length > 0 && (
+          <div class="mb-8">
+            <h2 class="text-2xl font-serif font-semibold mb-4">Stills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {project.stills.map((still: string) => (
+                <div class="aspect-video rounded-lg overflow-hidden bg-gray-200">
+                  <img
+                    src={still}
+                    alt={`${project.title} still`}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4 pt-8 border-t border-gray-200">
+          <a href="/projects" class="btn-secondary">
+            ← Back to projects
+          </a>
+          {project.watch && (
+            <a href={project.watch} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              Watch now
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

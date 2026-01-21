@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  year: number;
+  status: 'Completed' | 'In production' | 'In development';
+  type: string;
+  director?: string;
+  logline: string;
+  image: string;
+  slug: string;
+}
+
+const { title, year, status, type, director, logline, image, slug } = Astro.props;
+
+const statusClass =
+  status === 'Completed' ? 'status-completed' :
+  status === 'In production' ? 'status-production' :
+  'status-development';
+---
+
+<article class="card group overflow-hidden">
+  <a href={`/projects/${slug}`} class="block">
+    <div class="aspect-[16/9] overflow-hidden bg-gray-200">
+      <img
+        src={image}
+        alt={title}
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+    </div>
+    <div class="p-6">
+      <div class="flex items-center gap-2 text-sm font-mono text-muted mb-2">
+        <span>{year}</span>
+        <span>•</span>
+        <span class={`status-badge ${statusClass}`}>
+          {status}
+        </span>
+      </div>
+      <h3 class="text-xl font-semibold mb-1 group-hover:text-secondary transition-colors">
+        {title}
+      </h3>
+      {director && (
+        <p class="text-sm text-muted mb-2">Dir. {director}</p>
+      )}
+      <p class="text-sm text-muted line-clamp-2">
+        {logline}
+      </p>
+    </div>
+  </a>
+</article>
