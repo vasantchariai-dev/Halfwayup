@@ -3,5 +3,6 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://halfwayup.co.uk',
+  site: 'https://vasantchariai-dev.github.io',
+  base: '/Halfwayup',
 });
