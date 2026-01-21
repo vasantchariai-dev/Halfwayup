@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const allProjects = [
+  {
+    title: "Notification",
+    year: 2025,
+    status: "In production" as const,
+    type: "short",
+    director: "TBC",
+    logline: "A tense psychological drama exploring the anxiety and anticipation of waiting for life-changing news.",
+    image: "/images/projects/notification-hero.jpg",
+    slug: "notification"
+  },
+  {
+    title: "New Shoes",
+    year: 2024,
+    status: "Completed" as const,
+    type: "short",
+    director: "TBC",
+    logline: "A heartwarming story about finding confidence and identity through an unexpected purchase.",
+    image: "/images/projects/new-shoes-hero.jpg",
+    slug: "new-shoes"
+  },
+  {
+    title: "Untitled Feature Project",
+    year: 2025,
+    status: "In development" as const,
+    type: "feature",
+    logline: "A UK-India co-production exploring contemporary connections across cultures and continents.",
+    image: "/images/projects/feature-development.jpg",
+    slug: "untitled-feature"
+  }
+];
+---
+
+<BaseLayout
+  title="Projects"
+  description="Explore our portfolio of narrative short films, features, and projects in development."
+>
+  <Header />
+
+  <main>
+    <!-- Page Header -->
+    <section class="bg-primary text-white section-padding">
+      <div class="container-custom text-center">
+        <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4">Our projects</h1>
+        <p class="text-xl max-w-2xl mx-auto opacity-90">
+          From intimate short films to ambitious features, each project reflects our commitment to authentic, emotionally resonant storytelling.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="bg-white border-b border-gray-200 sticky top-[72px] z-40">
+      <div class="container-custom">
+        <div class="flex items-center gap-4 py-4 overflow-x-auto">
+          <button class="filter-tab active" data-filter="all">
+            All
+          </button>
+          <button class="filter-tab" data-filter="short">
+            Short films
+          </button>
+          <button class="filter-tab" data-filter="feature">
+            Features
+          </button>
+          <button class="filter-tab" data-filter="development">
+            In development
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="section-padding bg-cream">
+      <div class="container-custom">
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {allProjects.map(project => (
+            <div
+              class="project-item"
+              data-type={project.type}
+              data-status={project.status.toLowerCase().replace(' ', '-')}
+            >
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
+
+        <div id="no-results" class="hidden text-center py-12">
+          <p class="text-xl text-muted">No projects found matching your filter.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .filter-tab {
+    @apply px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200;
+    @apply text-muted hover:text-primary hover:bg-gray-100;
+    white-space: nowrap;
+  }
+
+  .filter-tab.active {
+    @apply bg-secondary text-white;
+  }
+</style>
+
+<script>
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const projectItems = document.querySelectorAll('.project-item');
+  const noResults = document.getElementById('no-results');
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const filter = tab.getAttribute('data-filter');
+
+      // Update active state
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Filter projects
+      let visibleCount = 0;
+      projectItems.forEach(item => {
+        const itemType = item.getAttribute('data-type');
+        const itemStatus = item.getAttribute('data-status');
+
+        let shouldShow = false;
+        if (filter === 'all') {
+          shouldShow = true;
+        } else if (filter === 'development') {
+          shouldShow = itemStatus === 'in-development';
+        } else {
+          shouldShow = itemType === filter;
+        }
+
+        if (shouldShow) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults?.classList.remove('hidden');
+      } else {
+        noResults?.classList.add('hidden');
+      }
+    });
+  });
+</script>

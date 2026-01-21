@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const newsItems = [
+  {
+    date: '2025-01-15',
+    title: 'New Shoes selected for British Short Film Festival',
+    excerpt: 'We\'re delighted to announce that our short film "New Shoes" has been selected for the 2024 British Short Film Festival.',
+    slug: 'new-shoes-festival-selection',
+    category: 'Festival news'
+  },
+  {
+    date: '2025-01-10',
+    title: 'Notification enters production',
+    excerpt: 'Principal photography begins this month on our latest short film exploring digital anxiety and anticipation.',
+    slug: 'notification-production',
+    category: 'Production update'
+  },
+  {
+    date: '2024-12-01',
+    title: 'Halfway Up Productions launches',
+    excerpt: 'Founder Evelyn Sharples announces the formation of Halfway Up Productions, a new independent production company focused on joyful, inclusive storytelling.',
+    slug: 'company-launch',
+    category: 'Company news'
+  }
+];
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
+---
+
+<BaseLayout
+  title="News"
+  description="Latest updates, festival selections, and industry news from Halfway Up Productions."
+>
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-primary text-white section-padding">
+      <div class="container-custom max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-serif font-bold mb-6">News & press</h1>
+        <p class="text-xl md:text-2xl opacity-90">
+          Stay updated with our latest projects, festival selections, and industry insights.
+        </p>
+      </div>
+    </section>
+
+    <!-- News Feed -->
+    <section class="section-padding bg-cream">
+      <div class="container-custom max-w-4xl">
+        <div class="space-y-6">
+          {newsItems.map(item => (
+            <article class="card p-6 md:p-8">
+              <div class="flex items-center gap-3 text-sm text-muted mb-3">
+                <time datetime={item.date} class="font-mono">
+                  {formatDate(item.date)}
+                </time>
+                <span>•</span>
+                <span class="rounded-full bg-secondary/10 text-secondary px-3 py-1 text-xs font-medium">
+                  {item.category}
+                </span>
+              </div>
+
+              <h2 class="text-2xl font-serif font-semibold mb-3 hover:text-secondary transition-colors">
+                <a href={`/news/${item.slug}`}>
+                  {item.title}
+                </a>
+              </h2>
+
+              <p class="text-lg text-muted mb-4">
+                {item.excerpt}
+              </p>
+
+              <a
+                href={`/news/${item.slug}`}
+                class="inline-flex items-center gap-2 text-secondary font-medium hover:gap-3 transition-all"
+              >
+                Read more
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        {/* Pagination placeholder */}
+        <div class="mt-12 text-center text-muted">
+          <p>More news coming soon</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

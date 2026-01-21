@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Halfway Up Productions is an independent UK film production company founded by producer Evelyn Sharples, dedicated to joyful, inclusive storytelling."
+>
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-primary text-white section-padding grain-texture">
+      <div class="container-custom max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-serif font-bold mb-6">
+          About Halfway Up Productions
+        </h1>
+        <p class="text-xl md:text-2xl opacity-90">
+          We're on a journey to create stories that reflect the world we want to live in.
+        </p>
+      </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="section-padding bg-cream">
+      <div class="container-custom max-w-4xl">
+        <h2 class="text-3xl font-serif font-semibold mb-6">Our story</h2>
+
+        <div class="prose prose-lg max-w-none">
+          <p class="text-lg leading-relaxed mb-4">
+            Halfway Up Productions is an independent UK film production company dedicated to bringing underrepresented voices and emotionally truthful stories to screen. Founded by producer Evelyn Sharples, we believe in the power of cinema to create connection, challenge perspectives, and celebrate the human experience in all its diversity.
+          </p>
+
+          <p class="text-lg leading-relaxed mb-4">
+            Our name reflects our philosophy: we're halfway up the mountain, still climbing, still learning, still discovering new stories to tell. We embrace the journey of independent filmmaking with all its challenges and rewards, committed to creating work that matters.
+          </p>
+
+          <p class="text-lg leading-relaxed mb-4">
+            We specialise in narrative short films and features, with a growing focus on emerging formats like vertical drama and international co-productions. Every project we undertake is guided by our commitment to joyful, inclusive storytelling that resonates across borders and cultures.
+          </p>
+        </div>
+
+        <!-- Values -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="card p-6 text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/10 text-secondary mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold mb-2">Joyful storytelling</h3>
+            <p class="text-sm text-muted">
+              We believe in stories that uplift, connect, and celebrate life—even when exploring difficult themes.
+            </p>
+          </div>
+
+          <div class="card p-6 text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/10 text-secondary mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold mb-2">Inclusive voices</h3>
+            <p class="text-sm text-muted">
+              We champion underrepresented storytellers and perspectives that deserve to be heard.
+            </p>
+          </div>
+
+          <div class="card p-6 text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/10 text-secondary mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-serif font-semibold mb-2">Emotional truth</h3>
+            <p class="text-sm text-muted">
+              Authenticity and genuine human emotion are at the heart of everything we make.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder Bio -->
+    <section class="section-padding bg-white">
+      <div class="container-custom max-w-5xl">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+          <div class="md:col-span-2">
+            <div class="aspect-[3/4] rounded-lg bg-gray-300 overflow-hidden sticky top-24">
+              <img
+                src="/images/team/evelyn-sharples.jpg"
+                alt="Evelyn Sharples, Founder and Producer"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="md:col-span-3">
+            <h2 class="text-3xl font-serif font-semibold mb-2">Evelyn Sharples</h2>
+            <p class="text-lg text-secondary font-medium mb-6">Founder & Producer</p>
+
+            <div class="space-y-4 text-lg leading-relaxed">
+              <p>
+                Evelyn Sharples is a UK-based producer with a unique background spanning mental health research and high-end television and film production. This unusual combination informs her approach to storytelling—balancing rigorous attention to process with deep empathy for human experience.
+              </p>
+
+              <p>
+                After years working across prestigious productions, Evelyn founded Halfway Up Productions to focus on the stories that matter most to her: narratives exploring identity, connection, and the emotional landscapes of contemporary life. She's particularly drawn to projects that challenge conventional perspectives while remaining accessible and emotionally engaging.
+              </p>
+
+              <p>
+                Evelyn's vision for Halfway Up extends beyond traditional filmmaking. She's pioneering UK-based vertical drama production and actively developing UK-India co-productions that leverage international treaties to tell cross-cultural stories with global reach.
+              </p>
+
+              <p class="text-muted">
+                When not producing, Evelyn is passionate about supporting emerging filmmakers and advocating for more inclusive, equitable production practices in the UK film industry.
+              </p>
+            </div>
+
+            <div class="mt-8 flex gap-4">
+              <a
+                href="mailto:evelyn@halfwayup.co.uk"
+                class="btn-primary"
+              >
+                Get in touch
+              </a>
+              <a
+                href="https://www.imdb.com/name/nm_evelyn_sharples"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-secondary"
+              >
+                View IMDb
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Growth -->
+    <section class="section-padding bg-cream">
+      <div class="container-custom max-w-4xl text-center">
+        <h2 class="text-3xl font-serif font-semibold mb-4">Growing our team</h2>
+        <p class="text-lg text-muted max-w-2xl mx-auto">
+          We collaborate with exceptional talent across the UK and internationally. As we grow, we're committed to building a team that reflects the diversity of stories we want to tell.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
